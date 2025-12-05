@@ -1,6 +1,10 @@
-let speedMultiplier = 1;
+// turbo.js
+
+// 1. Define global speed variables
+let speedMultiplier = 1; 
 const TURBO_FACTOR = 4;
 
+// 2. Add the button click handler
 const turboBtn = document.getElementById('turbo-btn');
 if (turboBtn) {
   turboBtn.addEventListener('click', () => {
