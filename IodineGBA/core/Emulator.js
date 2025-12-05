@@ -98,17 +98,16 @@ GameBoyAdvanceEmulator.prototype.restart = function () {
 GameBoyAdvanceEmulator.prototype.clearTimer = function () {
     clearInterval(this.timer);
     this.resetMetrics();
-}
 GameBoyAdvanceEmulator.prototype.startTimer = function () {
     this.clearTimer();
     var parentObj = this;
     this.timer = setInterval(function () {
-        // run multiple update ticks if turbo is on
-        for (let i = 0; i < speedMultiplier; i++) {
-            parentObj.timerCallback();
-        }
+        // run two update ticks per interval → double speed
+        parentObj.timerCallback();
+        parentObj.timerCallback();
     }, this.settings.timerIntervalRate);
 };
+
 GameBoyAdvanceEmulator.prototype.timerCallback = function () {
     //Check to see if web view is not hidden, if hidden don't run due to JS timers being inaccurate on page hide:
     if (!document.hidden && !document.msHidden && !document.mozHidden && !document.webkitHidden) {
